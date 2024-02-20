@@ -1,0 +1,71 @@
+#### User interface
+# The script to setup the application's user interface.
+
+
+### Dashboard page ----
+ui <- dashboardPage(
+  ## Visuals
+  skin = "blue",
+  
+  ## Dashboard header
+  dashboardHeader(
+    title = paste0("Laning Advisor - ", c_Patch)
+  ),
+  
+  ## Dashboard sidebar
+  dashboardSidebar(
+    # Player hero selector
+    selectInput(
+      inputId = "in_HeroPlayer",
+      label = "Your Hero",
+      choices = dt_HeroStats$Name,
+      selected = dt_HeroStats$Name[1]
+    ),
+    
+    # Enemy hero selector
+    selectInput(
+      inputId = "in_EnemyPlayer",
+      label = "Enemy Hero",
+      choices = dt_HeroStats$Name,
+      selected = dt_HeroStats$Name[2]
+    ),
+    
+    # Level selector
+    sliderInput(
+      inputId = "in_LVL", 
+      label = "Level", 
+      min = n_LVLRange[1],
+      max = n_LVLRange[length(n_LVLRange)],
+      value = n_LVLRange[1],
+      step = 1
+    ),
+    
+    # Stat selector
+    selectInput(
+      inputId = "in_Stat",
+      label = "Stat",
+      choices = c_SelectableStats,
+      selected = c_SelectableStats[1]
+    )
+  ),
+  
+  ## Dashboard body
+  dashboardBody(
+    # Row 1
+    fluidRow(
+      box(
+        width = 12
+      )
+    ),
+    
+    
+    # Row 2
+    fluidRow(
+      box(
+        plotOutput("out_StatDist"),
+        width = 12
+      )
+    )
+    
+  )
+)
