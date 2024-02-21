@@ -4,6 +4,8 @@
 
 ### Functional ----
 library(data.table)
+library(dplyr)
+library(plotly)
 library(readxl)
 
 
@@ -14,3 +16,4 @@ library(ggplot2)
 ### Shiny ----
 library(shiny)
 library(shinydashboard)
+library(shinyWidgets)

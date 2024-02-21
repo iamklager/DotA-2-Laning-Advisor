@@ -46,6 +46,13 @@ ui <- dashboardPage(
       label = "Stat",
       choices = c_SelectableStats,
       selected = c_SelectableStats[1]
+    ),
+    
+    # Color blind mode switch
+    checkboxInput(
+      inputId = "in_ColorBlindMode",
+      label = "Color Blind Mode",
+      value = c_ColorBlindOnStart
     )
   ),
   
@@ -54,12 +61,20 @@ ui <- dashboardPage(
     # Row 1
     fluidRow(
       box(
+        plotlyOutput("out_HeroComp"),
         width = 12
       )
     ),
     
-    
     # Row 2
+    fluidRow(
+      box(
+        plotOutput("out_StatOverTime"),
+        width = 12
+      )
+    ),
+    
+    # Row 3
     fluidRow(
       box(
         plotOutput("out_StatDist"),

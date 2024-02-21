@@ -4,7 +4,7 @@
 
 ### Rounding function ----
 f_RoundDT <- function(dt, cols) {
-  dt <- dt[,  (cols) := lapply(.SD, round), .SDcols = cols]
+  dt <- copy(dt[,  (cols) := lapply(.SD, round), .SDcols = cols])
   return(dt)
 }
 
@@ -25,6 +25,7 @@ f_CalcStats <- function(dt, lvl) {
   dt[, AS := ifelse(AS < 20, 20, AS)]
   dt[, AS := ifelse(AS > 700, 700, AS)]
   dt[, AtkRt := AS/(100*AtkT_b)]
+  dt[, AtkRng := AtkRng_b]
   dt[, DMG_avg_b := (DMG_min_b + DMG_max_b)/2]
   dt$DMG_main <- apply(dt, 1, function(x) {
     y <- unlist(x)
@@ -41,7 +42,7 @@ f_CalcStats <- function(dt, lvl) {
   
   # Survivability
   dt[, HP := HP_b + 22*(STR_b + (LVL-1)*STR_g) ]
-  dt[, HP_s := HP_sb + (0.1*STR) ]
+  dt[, HP_s := HP_s_b + (0.1*STR) ]
   dt[, MagRes := MagRes_b + (INT/10)*0.01 ]
   dt[, SlwRes := SlwRes_b ]
   dt[, StsRes := StsRes_b ]
@@ -50,7 +51,7 @@ f_CalcStats <- function(dt, lvl) {
   
   # Utility
   dt[, MP := MP_b + (12*INT)]
-  dt[, MP_s := MP_sb + 0.05*INT]
+  dt[, MP_s := MP_s_b + 0.05*INT]
   dt <- f_RoundDT( dt, c("MP"))
   
   return(dt)
