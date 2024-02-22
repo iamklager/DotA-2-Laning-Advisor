@@ -3,7 +3,7 @@
 
 
 ### Hero stats ----
-dt_HeroStats <- readxl::read_xlsx(paste0("Data/", c_Patch, ".xlsx"))
+dt_HeroStats <- readxl::read_xlsx("Data/hero_stats.xlsx", sheet = c_Patch)
 
 
 

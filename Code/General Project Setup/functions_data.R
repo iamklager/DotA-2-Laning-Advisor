@@ -52,6 +52,7 @@ f_CalcStats <- function(dt, lvl) {
   # Utility
   dt[, MP := MP_b + (12*INT)]
   dt[, MP_s := MP_s_b + 0.05*INT]
+  dt[, MS := MS_b]
   dt <- f_RoundDT( dt, c("MP"))
   
   return(dt)

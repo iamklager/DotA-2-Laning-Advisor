@@ -5,10 +5,11 @@
 ### Functional ----
 c_Patch <- "7.35b"
 n_LVLRange <- 1:5
-c_CompStats <- c("ARM", "AtkRng", "AS", "DMG_avg", "HP", "HP_s", "MagRes", "MP", "MP_s", "SlwRes", "StsRes", "TR", "VS_d", "VS_n")
+c_UnselectableStats <- c("LVL")
+c_CompStats <- c("ARM", "AtkRng", "AS", "DMG_avg", "HP", "HP_s", "MagRes", "MP", "MP_s", "MS", "SlwRes", "StsRes", "TR", "VS_d", "VS_n")
 
 
 ### Visual ----
-c_ColorPlayer <- c("#227722", "#4b69ff")
-c_ColorEnemy  <- "#b44435"
-c_ColorBlindOnStart <- TRUE
+c_ColorPlayer <- c("#6cd642", "#4db3cc")
+c_ColorEnemy  <- "#cc6666"
+c_ColorBlindOnStart <- FALSE

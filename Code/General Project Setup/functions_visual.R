@@ -36,7 +36,7 @@ f_PlotHeroComp <- function(dt, hero_player, hero_enemy, stats = c_CompStats, col
   res <- layout(
     p = res,
     barmode = "group",
-    bargroupgap = 0.1,
+    bargap = 0.4,
     margin = list(b = 50, t = 50),
     title = list(
       text = "Hero Comparison", font = list(family = "Arial", size = 26)
@@ -85,7 +85,6 @@ f_PlotStatOverTime <- function(stat, hero_player, hero_enemy, color_player) {
       breaks = c(hero_player, hero_enemy),
       values = c("solid", "dashed")[order(c(hero_player, hero_enemy))]
     )
-  
 }
 
 
