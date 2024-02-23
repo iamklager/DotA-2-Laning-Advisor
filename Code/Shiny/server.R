@@ -5,10 +5,6 @@
 ### Server ----
 server <- function(input, output) {
   ## Computations
-  # Updating hero stats based on level
-  dt_HeroStatsNew <- reactive({
-    f_CalcStats(dt = dt_HeroStats, lvl = input$in_LVL)
-  })
   # Matching stat to column name
   c_StatNew <- reactive({
     dt_Dic[FullName == input$in_Stat, Abbreviation]
@@ -23,7 +19,8 @@ server <- function(input, output) {
   output$out_HeroComp <- renderPlotly(
     expr = {
       f_PlotHeroComp(
-        dt           = dt_HeroStatsNew(),
+        dt           = dt_HeroStats,
+        lvl          = input$in_LVL,
         hero_player  = input$in_HeroPlayer, 
         hero_enemy   = input$in_EnemyPlayer,
         stats        = c_CompStats,
@@ -35,6 +32,7 @@ server <- function(input, output) {
   output$out_StatOverTime <- renderPlotly(
     expr = {
       f_PlotStatOverTime(
+        dt           = dt_HeroStats,
         stat         = c_StatNew(), 
         hero_player  = input$in_HeroPlayer, 
         hero_enemy   = input$in_EnemyPlayer,
@@ -46,7 +44,8 @@ server <- function(input, output) {
   output$out_StatDist <- renderPlotly(
     expr = {
       f_PlotStatDist(
-        dt           = dt_HeroStatsNew(),
+        dt           = dt_HeroStats,
+        lvl          = input$in_LVL,
         stat         = c_StatNew(),
         hero_player  = input$in_HeroPlayer,
         hero_enemy   = input$in_EnemyPlayer,

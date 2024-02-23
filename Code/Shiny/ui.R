@@ -18,16 +18,16 @@ ui <- dashboardPage(
     selectInput(
       inputId = "in_HeroPlayer",
       label = "Your Hero",
-      choices = dt_HeroStats$Name,
-      selected = dt_HeroStats$Name[1]
+      choices = c_SelectableHeroes,
+      selected = c_SelectableHeroes[1]
     ),
     
     # Enemy hero selector
     selectInput(
       inputId = "in_EnemyPlayer",
       label = "Enemy Hero",
-      choices = dt_HeroStats$Name,
-      selected = dt_HeroStats$Name[2]
+      choices = c_SelectableHeroes,
+      selected = c_SelectableHeroes[2]
     ),
     
     # Level selector

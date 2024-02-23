@@ -11,7 +11,6 @@ cat("\14")
 ### General project setup ----
 source("Code/General Project Setup/libraries.R")
 source("Code/General Project Setup/input_constants.R")
-source("Code/General Project Setup/functions_data.R")
 source("Code/General Project Setup/functions_visual.R")
 
 

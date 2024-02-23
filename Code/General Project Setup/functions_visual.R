@@ -3,8 +3,9 @@
 
 
 ### Hero Comparison ----
-f_PlotHeroComp <- function(dt, hero_player, hero_enemy, stats = c_CompStats, color_player) {
+f_PlotHeroComp <- function(dt, lvl, hero_player, hero_enemy, stats = c_CompStats, color_player) {
   # Preparing the data table for plotting
+  dt <- dt[LVL == lvl, ]
   dt <- dt[Name %in% c(hero_player, hero_enemy), .SD, .SDcols = c("Name", stats)]
   dt[, Color := ifelse( Name == hero_player, color_player, c_ColorEnemy )]
   dt2 <- copy(dt)
@@ -31,6 +32,7 @@ f_PlotHeroComp <- function(dt, hero_player, hero_enemy, stats = c_CompStats, col
       line = list(color = "#000000", width = 1)
     ),
     text = ~Standard,
+    textposition = "none",
     hovertemplate = "<b>%{x}:</b> %{text}"
   )
   res <- layout(
@@ -60,12 +62,9 @@ f_PlotHeroComp <- function(dt, hero_player, hero_enemy, stats = c_CompStats, col
 
 
 ### Stat over time ----
-f_PlotStatOverTime <- function(stat, hero_player, hero_enemy, color_player) {
+f_PlotStatOverTime <- function(dt, stat, hero_player, hero_enemy, color_player) {
   # Preparing the data table for plotting
-  dt <- dt_HeroStats[Name %in% c(hero_player, hero_enemy)]
-  dt <- bind_rows(lapply(n_LVLRange, function(i) {
-    f_CalcStats(dt, i)
-  }))
+  dt <- dt[Name %in% c(hero_player, hero_enemy)]
   dt <- dt[, .SD, .SDcols = c("Name", stat, "LVL")]
   dt[, LVL := as.character(LVL)]
   plot_colors = c(color_player, c_ColorEnemy)
@@ -83,8 +82,7 @@ f_PlotStatOverTime <- function(stat, hero_player, hero_enemy, color_player) {
     linetype      = ~Name,
     line          = list(width = 2),
     marker        = list(size  = 8),
-    text          = as.formula(paste0("~", stat)),
-    hovertemplate = "<b>Level %{x}:</b> %{text}"
+    hovertemplate = "<b>Level %{x}:</b> %{y}"
   )
   res <- layout(
     p = res,
@@ -118,8 +116,9 @@ f_PlotStatOverTime <- function(stat, hero_player, hero_enemy, color_player) {
 
 
 ### Distribution of stat ----
-f_PlotStatDist <- function(dt, stat, hero_player, hero_enemy, color_player) {
+f_PlotStatDist <- function(dt, lvl, stat, hero_player, hero_enemy, color_player) {
   # Preparing the data table for plotting
+  dt <- dt[LVL == lvl, ]
   dt[, Fill := "Other"]
   dt[Name == hero_player, Fill := hero_player]
   dt[Name == hero_enemy,  Fill := hero_enemy ]
