@@ -67,52 +67,107 @@ f_PlotStatOverTime <- function(stat, hero_player, hero_enemy, color_player) {
     f_CalcStats(dt, i)
   }))
   dt <- dt[, .SD, .SDcols = c("Name", stat, "LVL")]
+  dt[, LVL := as.character(LVL)]
+  plot_colors = c(color_player, c_ColorEnemy)
+  plot_colors = setNames(plot_colors, c(hero_player, hero_enemy))
   
-  # Plotting
-  ggplot(dt, aes(x = LVL, y = .data[[stat]], color = Name, linetype = Name)) + 
-    geom_line(linewidth = 1) + geom_point(size = 2) + 
-    theme_light(base_size = 16) + 
-    theme(panel.grid.major = element_blank()) + 
-    xlab(dt_Dic[Abbreviation == "Name", FullName]) + 
-    ylab(dt_Dic[Abbreviation == stat, FullName]) + 
-    scale_color_manual(
-      name = "Hero",
-      breaks = c(hero_player, hero_enemy),
-      values = c(color_player, c_ColorEnemy)
-    ) + 
-    scale_linetype_manual(
-      name = "Hero",
-      breaks = c(hero_player, hero_enemy),
-      values = c("solid", "dashed")[order(c(hero_player, hero_enemy))]
+  # Plot
+  res <- plot_ly(
+    data          = dt,
+    type          = "scatter", 
+    mode          = "lines+markers",
+    x             = ~LVL,
+    y             = as.formula(paste0("~", stat)),
+    color         = ~Name,
+    colors        = plot_colors,
+    linetype      = ~Name,
+    line          = list(width = 2),
+    marker        = list(size  = 8),
+    text          = as.formula(paste0("~", stat)),
+    hovertemplate = "<b>Level %{x}:</b> %{text}"
+  )
+  res <- layout(
+    p = res,
+    margin = list(b = 50, t = 50),
+    title = list(
+      text = dt_Dic[Abbreviation == stat, FullName], 
+      font = list(family = "Arial", size = 26)
+    ),
+    xaxis = list(
+      title = list(
+        text = dt_Dic[Abbreviation == "LVL", FullName], font = list(family = "Arial", size = 20)
+      ), 
+      tickfont  = list(family = "Arial", size = 16), 
+      fixedrange = TRUE
+    ),
+    yaxis = list(
+      title = list(
+        text = "", font = list(family = "Arial", size = 20)
+      ), 
+      tickfont  = list(family = "Arial", size = 16), 
+      fixedrange = TRUE
     )
+  )
+  res <- plotly::config(
+    p = res,
+    responsive = FALSE,
+    displayModeBar = FALSE
+  )
+  res
 }
 
 
 ### Distribution of stat ----
 f_PlotStatDist <- function(dt, stat, hero_player, hero_enemy, color_player) {
   # Preparing the data table for plotting
-  dt$Fill <- "Other"
+  dt[, Fill := "Other"]
   dt[Name == hero_player, Fill := hero_player]
   dt[Name == hero_enemy,  Fill := hero_enemy ]
+  dt[, Alpha := 1]
+  dt[Fill == "Other", Alpha := 0.3]
+  plot_color <- c(color_player, c_ColorEnemy, "gray")
+  plot_color <- setNames(plot_color, c(hero_player, hero_enemy, "Other"))
   
   # Plotting
-  ggplot(dt, aes(x = reorder(Name, + .data[[stat]]), y = .data[[stat]], fill = Fill, alpha = Fill)) + 
-    geom_col(color = "#000000", width = 0.7) + theme_light(base_size = 16) + 
-    theme(
-      panel.grid.major = element_blank(), 
-      axis.text.x = element_text(size = 8, angle = 90, hjust=0.95, vjust = 0.25)
-    ) + 
-    xlab(dt_Dic[Abbreviation == "Name", FullName]) + 
-    ylab(dt_Dic[Abbreviation == stat, FullName]) + 
-    scale_fill_manual(
-      name = "Hero",
-      breaks = c(hero_player, hero_enemy, "Other"),
-      values = c(color_player, c_ColorEnemy, "gray")
-    ) + 
-    scale_alpha_manual(
-      name = "Hero",
-      breaks = c(hero_player, hero_enemy, "Other"),
-      values = c(1, 1, 0.3)
+  res <- plot_ly(
+    data = dt,
+    type = "bar",
+    x = ~Name,
+    y = as.formula(paste0("~", stat)),
+    color = ~Fill,
+    colors = plot_color,
+    opacity = ~Alpha,
+    marker = list( line = list(color = "#000000", width = 1) ),
+    hovertemplate = "<b>%{x}:</b> %{y}"
+  )
+  res <- layout(
+    p = res,
+    margin = list(b = 50, t = 50),
+    title = list(
+      text = dt_Dic[Abbreviation == stat, FullName], font = list(family = "Arial", size = 26)
+    ),
+    xaxis = list(
+      title = list(
+        text = dt_Dic[Abbreviation == "Name", FullName], font = list(family = "Arial", size = 20)
+      ), 
+      tickfont  = list(family = "Arial", size = 16), 
+      fixedrange = TRUE,
+      categoryorder = "total ascending"
+    ),
+    yaxis = list(
+      title = list(
+        text = "", font = list(family = "Arial", size = 20)
+      ), 
+      tickfont  = list(family = "Arial", size = 16), 
+      fixedrange = TRUE,
+      ategoryorder = "total ascending"
     )
+  )
+  res <- plotly::config(
+    p = res,
+    responsive = FALSE,
+    displayModeBar = FALSE
+  )
+  res
 }
 

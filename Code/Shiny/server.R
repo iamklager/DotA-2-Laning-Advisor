@@ -31,9 +31,8 @@ server <- function(input, output) {
       )
     }
   )
-  
   # Stat over time
-  output$out_StatOverTime <- renderPlot(
+  output$out_StatOverTime <- renderPlotly(
     expr = {
       f_PlotStatOverTime(
         stat         = c_StatNew(), 
@@ -44,7 +43,7 @@ server <- function(input, output) {
     }
   )
   # Stat distribution
-  output$out_StatDist <- renderPlot(
+  output$out_StatDist <- renderPlotly(
     expr = {
       f_PlotStatDist(
         dt           = dt_HeroStatsNew(),

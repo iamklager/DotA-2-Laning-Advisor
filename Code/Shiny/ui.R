@@ -69,7 +69,7 @@ ui <- dashboardPage(
     # Row 2
     fluidRow(
       box(
-        plotOutput("out_StatOverTime"),
+        plotlyOutput("out_StatOverTime"),
         width = 12
       )
     ),
@@ -77,7 +77,7 @@ ui <- dashboardPage(
     # Row 3
     fluidRow(
       box(
-        plotOutput("out_StatDist"),
+        plotlyOutput("out_StatDist"),
         width = 12
       )
     )
