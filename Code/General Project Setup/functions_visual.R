@@ -37,7 +37,7 @@ f_PlotHeroComp <- function(dt, hero_player, hero_enemy, stats = c_CompStats, col
     p = res,
     barmode = "group",
     bargap = 0.4,
-    margin = list(b = 50, t = 50),
+    margin = list(b = 100, t = 100, l = 50, r = 150),
     title = list(
       text = "Hero Comparison", font = list(family = "Arial", size = 26)
     ),
@@ -45,7 +45,7 @@ f_PlotHeroComp <- function(dt, hero_player, hero_enemy, stats = c_CompStats, col
       title = list(
         text = "Stat", font = list(family = "Arial", size = 20)
       ), 
-      tickfont  = list(family = "Arial", size = 16), 
+      tickfont  = list(family = "Arial", size = 12), 
       fixedrange = TRUE
     ),
     yaxis = list(title = "", showticklabels = FALSE, fixedrange = TRUE)
@@ -88,7 +88,7 @@ f_PlotStatOverTime <- function(stat, hero_player, hero_enemy, color_player) {
   )
   res <- layout(
     p = res,
-    margin = list(b = 50, t = 50),
+    margin = list(b = 100, t = 100, l = 50, r = 150),
     title = list(
       text = dt_Dic[Abbreviation == stat, FullName], 
       font = list(family = "Arial", size = 26)
@@ -97,14 +97,14 @@ f_PlotStatOverTime <- function(stat, hero_player, hero_enemy, color_player) {
       title = list(
         text = dt_Dic[Abbreviation == "LVL", FullName], font = list(family = "Arial", size = 20)
       ), 
-      tickfont  = list(family = "Arial", size = 16), 
+      tickfont  = list(family = "Arial", size = 12), 
       fixedrange = TRUE
     ),
     yaxis = list(
       title = list(
         text = "", font = list(family = "Arial", size = 20)
       ), 
-      tickfont  = list(family = "Arial", size = 16), 
+      tickfont  = list(family = "Arial", size = 12), 
       fixedrange = TRUE
     )
   )
@@ -130,19 +130,19 @@ f_PlotStatDist <- function(dt, stat, hero_player, hero_enemy, color_player) {
   
   # Plotting
   res <- plot_ly(
-    data = dt,
-    type = "bar",
-    x = ~Name,
-    y = as.formula(paste0("~", stat)),
-    color = ~Fill,
-    colors = plot_color,
-    opacity = ~Alpha,
-    marker = list( line = list(color = "#000000", width = 1) ),
+    data          = dt,
+    type          = "bar",
+    x             = ~Name,
+    y             = as.formula(paste0("~", stat)),
+    color         = ~Fill,
+    colors        = plot_color,
+    opacity       = ~Alpha,
+    marker        = list( line = list(color = "#000000", width = 1) ),
     hovertemplate = "<b>%{x}:</b> %{y}"
   )
   res <- layout(
     p = res,
-    margin = list(b = 50, t = 50),
+    margin = list(b = 100, t = 100, l = 50, r = 150),
     title = list(
       text = dt_Dic[Abbreviation == stat, FullName], font = list(family = "Arial", size = 26)
     ),
@@ -150,7 +150,7 @@ f_PlotStatDist <- function(dt, stat, hero_player, hero_enemy, color_player) {
       title = list(
         text = dt_Dic[Abbreviation == "Name", FullName], font = list(family = "Arial", size = 20)
       ), 
-      tickfont  = list(family = "Arial", size = 16), 
+      tickfont  = list(family = "Arial", size = 10), 
       fixedrange = TRUE,
       categoryorder = "total ascending"
     ),
@@ -158,7 +158,7 @@ f_PlotStatDist <- function(dt, stat, hero_player, hero_enemy, color_player) {
       title = list(
         text = "", font = list(family = "Arial", size = 20)
       ), 
-      tickfont  = list(family = "Arial", size = 16), 
+      tickfont  = list(family = "Arial", size = 12), 
       fixedrange = TRUE,
       ategoryorder = "total ascending"
     )

@@ -60,26 +60,17 @@ ui <- dashboardPage(
   dashboardBody(
     # Row 1
     fluidRow(
-      box(
-        plotlyOutput("out_HeroComp"),
-        width = 12
-      )
+      plotlyOutput("out_HeroComp", height = "300px")
     ),
     
     # Row 2
     fluidRow(
-      box(
-        plotlyOutput("out_StatOverTime"),
-        width = 12
-      )
+      plotlyOutput("out_StatOverTime", height = "300px")
     ),
     
     # Row 3
     fluidRow(
-      box(
-        plotlyOutput("out_StatDist"),
-        width = 12
-      )
+      plotlyOutput("out_StatDist", height = "300px")
     )
     
   )
