@@ -45,7 +45,7 @@ ui <- dashboardPage(
       inputId = "in_Stat",
       label = "Stat",
       choices = c_SelectableStats,
-      selected = c_SelectableStats[1]
+      selected = c_StartStat
     ),
     
     # Color blind mode switch
