@@ -122,11 +122,10 @@ f_PlotStatDist <- function(dt, lvl, stat, hero_player, hero_enemy, color_player)
   dt[, Fill := "Other"]
   dt[Name == hero_player, Fill := hero_player]
   dt[Name == hero_enemy,  Fill := hero_enemy ]
-  dt[, Alpha := 1]
-  dt[Fill == "Other", Alpha := 0.3]
-  plot_color <- c(color_player, c_ColorEnemy, "gray")
+  dt[, Alpha := ifelse(Fill == "Other", 0.3, 1)]
+  plot_color <- c(color_player, c_ColorEnemy, "lightgray")
   plot_color <- setNames(plot_color, c(hero_player, hero_enemy, "Other"))
-  
+  dt <- dt
   # Plotting
   res <- plot_ly(
     data          = dt,
@@ -135,7 +134,7 @@ f_PlotStatDist <- function(dt, lvl, stat, hero_player, hero_enemy, color_player)
     y             = as.formula(paste0("~", stat)),
     color         = ~Fill,
     colors        = plot_color,
-    opacity       = ~Alpha,
+    # opacity       = ~Alpha, does not work when switching heroes...
     marker        = list( line = list(color = "#000000", width = 1) ),
     hovertemplate = "<b>%{x}:</b> %{y}"
   )
