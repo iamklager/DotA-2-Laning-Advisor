@@ -3,7 +3,7 @@ A simple dashboard helping you to better understand early-level lane matchups in
 
 ## Idea
 
-This tool is aimed at providing the user a simple way to analyze early-level hero (lane) matchups based on the heroes' stats.  
+This tool is aimed at providing the user a simple way to analyze early-level hero (lane) matchups based on the heroe's stats.  
 Note that neither items nor spells are being taken into account.
 
 ## Requirements
