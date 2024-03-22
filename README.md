@@ -3,7 +3,7 @@ A simple dashboard helping you to better understand early-level lane matchups in
 
 ## Idea
 
-This tool is aimed at providing the user with a simple way to analyze early-level hero (lane) matchups based on the heroe's stats.  
+This tool is aimed at providing the user with a simple way to analyze early-level hero (lane) matchups based on the heroes' stats.  
 Note that neither items nor spells are being taken into account.
 
 ## Requirements
@@ -25,6 +25,8 @@ The dashboard will display three plots to you. The first plot presents a compari
 Last, the patch for which this dashboard holds is shown in the top left of the UI.
 
 Each chart is interactive and hovering over a given element will display its exact value.
+
+Additional settings can be adjusted in the *input_constants.R* script in the *Code/General Project Setup* folder. These include the selected patch, the most important stats displayed in the first chart, the stat selected by default, the range of possible levels, and the colors to use for your and the enemy hero.
 
 
 ## FAQ

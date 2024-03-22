@@ -3,7 +3,7 @@
 
 
 ### Clearing environment ----
-setwd(gsub("Code$", "", dirname(rstudioapi::getActiveDocumentContext()$path)))
+setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 rm(list = ls())
 cat("\14")
 

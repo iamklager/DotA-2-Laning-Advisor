@@ -9,7 +9,7 @@ ui <- dashboardPage(
   
   ## Dashboard header
   dashboardHeader(
-    title = paste0("Laning Advisor - ", c_Patch)
+    title = paste0("Laning Advisor: ", c_Patch)
   ),
   
   ## Dashboard sidebar
