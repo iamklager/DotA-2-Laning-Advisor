@@ -6,6 +6,12 @@ A simple dashboard helping you to better understand early-level lane matchups in
 This tool is aimed at providing the user with a simple way to analyze early-level hero (lane) matchups based on the heroes' stats.  
 Note that neither items nor spells are being taken into account.
 
+## Demo
+<p align = "center">
+  <img src = "https://github.com/iamklager/Stock-Monitoring-Tool/raw/main/.github/demo_1.png" width = "400" />
+  <img src = "https://github.com/iamklager/Stock-Monitoring-Tool/raw/main/.github/demo_2.png" width = "400" />
+</p>
+
 ## Requirements
 
 To run this project the user must have installed R in combination with the following libraries:
