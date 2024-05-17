@@ -8,8 +8,8 @@ Note that neither items nor spells are being taken into account.
 
 ## Demo
 <p align = "center">
-  <img src = "https://github.com/iamklager/Stock-Monitoring-Tool/raw/main/.github/demo_1.png" width = "400" />
-  <img src = "https://github.com/iamklager/Stock-Monitoring-Tool/raw/main/.github/demo_2.png" width = "400" />
+  <img src = "https://github.com/iamklager/DotA-2-Laning-Advisor/raw/main/.github/demo_1.png" width = "400" />
+  <img src = "https://github.com/iamklager/DotA-2-Laning-Advisor/raw/main/.github/demo_2.png" width = "400" />
 </p>
 
 ## Requirements
