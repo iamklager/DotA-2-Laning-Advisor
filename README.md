@@ -6,6 +6,12 @@ A simple dashboard helping you to better understand early-level lane matchups in
 This tool is aimed at providing the user with a simple way to analyze early-level hero (lane) matchups based on the heroes' stats.  
 Note that neither items nor spells are being taken into account.
 
+## Demo
+<p align = "center">
+  <img src = "https://github.com/iamklager/DotA-2-Laning-Advisor/raw/main/.github/demo_1.png" width = "400" />
+  <img src = "https://github.com/iamklager/DotA-2-Laning-Advisor/raw/main/.github/demo_2.png" width = "400" />
+</p>
+
 ## Requirements
 
 To run this project the user must have installed R in combination with the following libraries:
@@ -47,3 +53,8 @@ Following the previous answer, in my opinion, the game changes disproportionate 
 ### How does the tool update its information after a patch?
 
 Despite being an unreliable and tedious way of updating after a new patch all the information the tool uses is stored in the .xlsx-files found in the *Data* folder. I am manually updating these with every new patch and update this repository accordingly.
+
+### What about facets?
+
+Facets added another layer of complexity to DotA and to be honest I did not expect such a drastic and complexity increasing update. Therefore, facets are not included in this dashboard for the same reasons as abilities, talents and items have been ignored. Sadly I must admit that this new increase of complexity also decreased the value of this tool.
+
